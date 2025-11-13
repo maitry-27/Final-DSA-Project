@@ -7,18 +7,6 @@ This repository contains two independent routing systems:
 - **City Area Delivery Planner (Intra-City)** — Uses the *Greedy Nearest-Neighbour* algorithm  
 - **Optimal Route Planner (Inter-City)** — Uses the *Exact Traveling Salesman Problem (TSP)* algorithm
 
----
-
-## Table of Contents
-- [Overview](#overview)
-- [Modules](#modules)
-  - [Intra-City Delivery Planner](#1-intra-city-delivery-planner-greedy)
-  - [Inter-City Optimal Route Planner](#2-inter-city-optimal-route-planner-tsp)
-- [Algorithms Used](#algorithms-used)
-- [Project Structure](#project-structure)
-- [How to Use](#how-to-use)
-- [Feature Comparison](#feature-comparison)
-- [Contributors](#contributors)
 
 ---
 
