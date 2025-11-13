@@ -135,6 +135,7 @@ Speed	Very Fast	Slow (Factorial)
 Accuracy	~85–95%	100%
 Scale	50+ areas	≤ 10 cities
 Use Case	Quick commerce delivery	Logistics route planning
+
 👥 Contributors
 
 Satyam Varu (B24EE1086)
