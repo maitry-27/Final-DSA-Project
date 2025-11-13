@@ -1,145 +1,94 @@
-Delivery Route Planning System
+# 🚚 Delivery Route Planning System
 
-A dual-module Data Structures & Algorithms project featuring Intra-City Greedy Routing and Inter-City Optimal TSP Path Calculation.
+A dual-module Data Structures & Algorithms project that provides **Intra-City fast delivery routing** and **Inter-City optimal route planning** using Greedy and TSP algorithms.
 
-This repository contains two independent but related routing systems:
+---
 
-City Area Delivery Planner (Intra-City) — Uses the Greedy Nearest-Neighbour algorithm
+## 📚 Table of Contents
+- [Overview](#overview)
+- [Modules](#modules)
+  - [Intra-City Delivery Planner](#1-intra-city-delivery-planner-greedy)
+  - [Inter-City Optimal Route Planner](#2-inter-city-optimal-route-planner-tsp)
+- [Algorithms Used](#algorithms-used)
+- [Project Structure](#project-structure)
+- [How to Use](#how-to-use)
+- [Feature Comparison](#feature-comparison)
+- [Contributors](#contributors)
 
-Optimal Route Planner (Inter-City) — Uses the Exact Traveling Salesman Problem (TSP) algorithm
+---
 
-📦 Modules Overview
-1. City Area Delivery Planner (Intra-City)
+## 📘 Overview
+This project contains **two independent routing systems**:
 
-An intra-city routing tool using the Greedy Nearest Neighbour algorithm for fast, efficient path calculation across multiple delivery zones.
+1. **City Area Delivery Planner (Intra-City)** – Fast route calculation using **Greedy Nearest-Neighbour**  
+2. **Optimal Route Planner (Inter-City)** – Mathematically shortest route using **Exact TSP**
 
-Features
+Both systems include interactive maps, dynamic delivery inputs, and route visualization.
 
-Fast nearest-neighbour routing
+---
 
-Interactive map of city areas
+## 🧭 Modules
 
-Visual delivery sequence
+---
 
-Instant computation even for many locations
+## **1. Intra-City Delivery Planner (Greedy)**
 
-Algorithm Used – Greedy Nearest Neighbour
-1. Start at the chosen location
+An intra-city tool that calculates fast delivery routes across 14 areas using the **Greedy Nearest Neighbour** algorithm.
 
-The algorithm begins from the user-selected starting area. This is the first visited point.
+### ⭐ Features
+- Real-time route generation  
+- Canvas-based city visual map  
+- Supports multiple delivery zones  
+- Instant calculation and updates  
+- Clean user interface  
 
-2. Select the closest unvisited area
+### 🧠 Algorithm Used – Greedy Nearest Neighbour
 
-From the current position, the algorithm computes distances to all areas that still have pending deliveries.
-It selects the area with the shortest distance among the unvisited locations.
+1. **Start at the chosen location**  
+2. **Select the closest unvisited area**  
+3. **Move to that area and mark it as visited**  
+4. **Repeat until all delivery areas are visited**
 
-3. Move to that area and mark it as visited
+### 📈 Performance
+- **Time Complexity:** O(n²)  
+- Efficient for **50+ delivery points**  
+- ~85–95% route optimality  
 
-After selecting the nearest area, the system moves to that location.
-Once reached, it marks that area as visited so it won't be selected again.
+---
 
-4. Repeat until all delivery areas are visited
+## **2. Inter-City Optimal Route Planner (TSP)**
 
-The process repeats:
+A system that computes the exact shortest possible route between selected major Indian cities.
 
-From the new current location, check all unvisited areas
+### ⭐ Features
+- Precise TSP-based route optimization  
+- Interactive map  
+- Delivery quantity selection  
+- Route drawing + summary (distance & time)  
+- Custom start & end city  
 
-Choose the closest one
+### 🧠 Algorithm – Exact TSP
+- Evaluates **all permutations**
+- Guarantees **100% optimal** route
+- Best for **≤ 10 cities**
 
-Go there and mark as visited
+### 📈 Performance
+- **Time Complexity:** O(n!)**  
+- Used for **high-accuracy logistics planning**
 
-This loop continues until every required delivery location is visited.
+---
 
-Performance
+## 🧮 Algorithms Used
 
-Time Complexity: O(n²)
+### **Greedy Nearest Neighbour**  
+Used for intra-city routing.  
+Fast, scalable, picks next closest location locally.
 
-Efficient for 50+ intra-city stops
+### **Exact TSP (Traveling Salesman Problem)**  
+Used for inter-city routing.  
+Computes globally optimal shortest path.
 
-Typically achieves ~85% optimal accuracy
+---
 
-2. Optimal Route Planner (Inter-City)
+## 📁 Project Structure
 
-A route optimization system using the Exact TSP algorithm to compute the mathematically shortest path between major Indian cities.
-
-Features
-
-Fully optimal TSP route
-
-Interactive India map
-
-Start/end customization
-
-Delivery quantity selection
-
-Visualized route and summary (distance + time)
-
-Algorithm – Exact TSP
-
-Computes all possible route permutations
-
-Selects the shortest total path
-
-Guaranteed optimal as long as the city count ≤ 10
-
-Performance
-
-Time Complexity: O(n!)
-
-Best suited for high-accuracy inter-city logistics planning
-
-📁 Project Structure
-Final-DSA-Project/
-│
-├── Intra city/                     # City Area Delivery Planner
-│   ├── index.html
-│   ├── css/
-│   │   └── styles.css
-│   └── js/
-│       └── main.js
-│
-└── Inter city/                     # Optimal Route Planner (TSP)
-    ├── index.html
-    ├── css/
-    │   └── styles.css
-    └── js/
-        └── main.js
-
-▶️ How to Use
-For both planners:
-
-Open the respective index.html file in any modern browser
-
-Choose start and end locations
-
-Enter parcel quantities if required
-
-Click:
-
-“Calculate Fast Route” for the Intra-City Greedy Planner
-
-“Find Optimal Route” for the Inter-City TSP Planner
-
-View:
-
-Route drawn on the map
-
-Step-wise delivery sequence
-
-Total distance & estimated time
-
-📊 Feature Comparison
-Feature	Intra-City (Greedy)	Inter-City (TSP Optimal)
-Algorithm Type	Nearest Neighbour	Exact TSP
-Speed	Very Fast	Slow (Factorial)
-Accuracy	~85–95%	100%
-Scale	50+ areas	≤ 10 cities
-Use Case	Quick commerce delivery	Logistics route planning
-
-👥 Contributors
-
-Satyam Varu (B24EE1086)
-
-Arni Godiawala (B24EE1021)
-
-Maitry Gami (B24CS1041)
