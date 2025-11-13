@@ -96,11 +96,13 @@ Chooses the nearest next unvisited area at every step.
 Used for **inter-city** delivery.  
 Guarantees shortest possible route via full permutation search.
 
----
 
+---
 # Project Structure
+```
 
 Final-DSA-Project/  
+│  
 ├── Intra city/  
 │   ├── index.html  
 │   ├── css/  
@@ -114,8 +116,9 @@ Final-DSA-Project/
     │   └── styles.css  
     └── js/  
         └── main.js  
-
+```
 ---
+
 
 # How to Use
 
