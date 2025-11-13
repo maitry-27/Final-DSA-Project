@@ -81,7 +81,7 @@ The system:
 
 ### Performance
 - **Time Complexity:** O(n!)  
-- Best suited for inter-city logistics  
+- Ideal for high-accuracy logistics planning  
 - Extremely accurate but slower  
 
 ---
@@ -89,17 +89,18 @@ The system:
 # Algorithms Used
 
 ## Greedy Nearest Neighbour  
-Used for **intra-city** delivery: always picks the closest next unvisited location.
+Used for **intra-city** delivery.  
+Chooses the nearest next unvisited area at every step.
 
 ## Exact TSP  
-Used for **inter-city** delivery: computes all permutations to guarantee shortest route.
+Used for **inter-city** delivery.  
+Guarantees shortest possible route via full permutation search.
 
 ---
 
 # Project Structure
 
 Final-DSA-Project/  
-│  
 ├── Intra city/  
 │   ├── index.html  
 │   ├── css/  
