@@ -48,8 +48,6 @@ A real-time tool for calculating fast delivery routes across 14 city zones.
 3. **Move to that area and mark it as visited**  
 4. **Repeat until all delivery areas are visited**
 
-This algorithm is fast and effective for short-distance city deliveries.
-
 ---
 
 ### Performance
@@ -79,26 +77,22 @@ The system:
 - Computes **total distance for each**
 - Selects the **shortest possible route**
 
-Guaranteed **100% optimal** for city counts ≤ 10.
-
 ---
 
 ### Performance
 - **Time Complexity:** O(n!)  
-- Best suited for logistics and inter-city planning  
-- Extremely accurate but slower due to factorial complexity  
+- Best suited for inter-city logistics  
+- Extremely accurate but slower  
 
 ---
 
 # Algorithms Used
 
 ## Greedy Nearest Neighbour  
-Used for **intra-city** delivery.  
-Chooses the nearest next unvisited area at every step.
+Used for **intra-city** delivery: always picks the closest next unvisited location.
 
 ## Exact TSP  
-Used for **inter-city** delivery.  
-Guarantees shortest possible route using full permutation search.
+Used for **inter-city** delivery: computes all permutations to guarantee shortest route.
 
 ---
 
@@ -114,28 +108,28 @@ Final-DSA-Project/
 │       └── main.js  
 │  
 └── Inter city/  
-      ├── index.html  
-      ├── css/  
-      │   └── styles.css  
-      └── js/  
-          └── main.js  
+    ├── index.html  
+    ├── css/  
+    │   └── styles.css  
+    └── js/  
+        └── main.js  
 
 ---
 
 # How to Use
 
 ## For Both Planners:
-1. Open the relevant **index.html** file  
+1. Open the relevant **index.html**  
 2. Choose **start** and **end** locations  
-3. Enter **parcel quantities** for each city/area  
+3. Enter **parcel quantities**  
 4. Click:
-   - **Calculate Fast Route** → Intra-City (Greedy)  
-   - **Find Optimal Route** → Inter-City (TSP)  
+   - **Calculate Fast Route** → Intra-City  
+   - **Find Optimal Route** → Inter-City  
 5. View:
-   - The route drawn on the map  
+   - Route drawn on the map  
    - Delivery sequence  
    - Total distance  
-   - Estimated delivery time  
+   - Estimated time  
 
 ---
 
