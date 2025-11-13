@@ -114,11 +114,11 @@ Final-DSA-Project/
 │       └── main.js  
 │  
 └── Inter city/  
-    ├── index.html  
-    ├── css/  
-    │   └── styles.css  
-    └── js/  
-        └── main.js  
+      ├── index.html  
+      ├── css/  
+      │   └── styles.css  
+      └── js/  
+          └── main.js  
 
 ---
 
