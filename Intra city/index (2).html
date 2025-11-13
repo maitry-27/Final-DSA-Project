@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Area Delivery Planner</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-text">
+                        <h1>City Area Delivery Planner</h1>
+                        <p>Fast Greedy Algorithm - Real-time Routing</p>
+                    </div>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalParcels">0</span>
+                        <span class="stat-label">Total Parcels</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalAreas">0</span>
+                        <span class="stat-label">Areas</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalDistance">0</span>
+                        <span class="stat-label">Total KM</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="estimatedTime">0</span>
+                        <span class="stat-label">Est. Minutes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main View -->
+        <div class="main-view">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h2>Route Configuration</h2>
+                    <p>Plan deliveries across city areas</p>
+                </div>
+                
+                <div class="sidebar-content">
+                    <div id="statusContainer"></div>
+
+                    <div class="info-box">
+                        <strong>Greedy Algorithm:</strong> Fast nearest-neighbor routing perfect for real-time city deliveries. Always picks the closest unvisited area!
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Start & End Points</div>
+                        <div class="depot-selector">
+                            <div class="depot-row">
+                                <span class="depot-label">Start Area:</span>
+                                <select id="startPoint" class="depot-select">
+                                    <option value="Central Hub">Central Hub</option>
+                                    <option value="North District">North District</option>
+                                    <option value="South District">South District</option>
+                                    <option value="East District">East District</option>
+                                    <option value="West District">West District</option>
+                                    <option value="Downtown">Downtown</option>
+                                    <option value="Suburb North">Suburb North</option>
+                                    <option value="Suburb South">Suburb South</option>
+                                    <option value="Industrial Zone">Industrial Zone</option>
+                                    <option value="Tech Park">Tech Park</option>
+                                    <option value="Shopping District">Shopping District</option>
+                                    <option value="Residential East">Residential East</option>
+                                    <option value="Residential West">Residential West</option>
+                                    <option value="Business Park">Business Park</option>
+                                </select>
+                            </div>
+                            <div class="depot-row">
+                                <span class="depot-label">End Area:</span>
+                                <select id="endPoint" class="depot-select">
+                                    <option value="Central Hub">Central Hub</option>
+                                    <option value="North District">North District</option>
+                                    <option value="South District">South District</option>
+                                    <option value="East District">East District</option>
+                                    <option value="West District">West District</option>
+                                    <option value="Downtown">Downtown</option>
+                                    <option value="Suburb North">Suburb North</option>
+                                    <option value="Suburb South">Suburb South</option>
+                                    <option value="Industrial Zone">Industrial Zone</option>
+                                    <option value="Tech Park">Tech Park</option>
+                                    <option value="Shopping District">Shopping District</option>
+                                    <option value="Residential East">Residential East</option>
+                                    <option value="Residential West">Residential West</option>
+                                    <option value="Business Park">Business Park</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Area Deliveries</div>
+                        <p style="font-size: 0.85em; color: #666666; margin-bottom: 12px;">
+                            Set parcels for each area (greedy algorithm picks closest first)
+                        </p>
+                        <div class="area-config-list" id="areaConfigList"></div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Actions</div>
+                        <div class="action-section">
+                            <button class="action-btn primary" onclick="calculateGreedyRoute()">
+                                Calculate Fast Route
+                            </button>
+                            <button class="action-btn secondary" onclick="clearAllParcels()">
+                                Clear All Parcels
+                            </button>
+                            <button class="action-btn secondary" onclick="resetToDefaults()">
+                                Reset to Defaults
+                            </button>
+                        </div>
+
+                        <div id="routeSummaryContainer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Area -->
+            <div class="map-container">
+                <canvas id="mapCanvas"></canvas>
+                
+                <!-- Route Details -->
+                <div class="route-info hidden" id="routeInfo">
+                    <h3>Delivery Sequence</h3>
+                    <div id="routeSteps"></div>
+                </div>
+
+                <!-- Legend -->
+                <!-- Legend -->
+<div class="legend-panel" role="group" aria-label="Map legend">
+  <div class="legend-title">Map Legend</div>
+
+  <div class="legend-item">
+    <!-- start pin (filled circle with white inner) -->
+    <svg class="legend-svg pin" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="8" r="6" class="svg-fill-start" stroke="white" stroke-width="2"/>
+      <circle cx="12" cy="8" r="2.2" fill="white"/>
+    </svg>
+    <span class="legend-label">Start point</span>
+  </div>
+
+  <div class="legend-item">
+    <!-- end pin -->
+    <svg class="legend-svg pin" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="8" r="6" class="svg-fill-end" stroke="white" stroke-width="2"/>
+      <circle cx="12" cy="8" r="2.2" fill="white"/>
+    </svg>
+    <span class="legend-label">End point</span>
+  </div>
+
+  <div class="legend-item">
+    <!-- delivery area (smaller pin) -->
+    <svg class="legend-svg pin" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="8" r="5" class="svg-fill-delivery" stroke="white" stroke-width="2"/>
+      <circle cx="12" cy="8" r="1.8" fill="white"/>
+    </svg>
+    <span class="legend-label">Delivery area (with parcels)</span>
+  </div>
+
+  <div class="legend-item">
+    <!-- road (dashed line) -->
+    <svg class="legend-svg line" viewBox="0 0 64 12" aria-hidden="true">
+      <line x1="4" y1="6" x2="60" y2="6" stroke-linecap="round"
+            stroke-width="3" class="svg-stroke-road" stroke-dasharray="8 6"/>
+    </svg>
+    <span class="legend-label">Road network (dashed)</span>
+  </div>
+
+  <div class="legend-item">
+    <!-- greedy route (thick line + arrow) -->
+    <svg class="legend-svg line-arrow" viewBox="0 0 80 18" aria-hidden="true">
+      <defs>
+        <marker id="arrowHead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 z" class="svg-fill-route" />
+        </marker>
+      </defs>
+      <line x1="4" y1="9" x2="66" y2="9" stroke-width="7" class="svg-stroke-route" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+      <!-- thin shadow stroke for contrast -->
+      <line x1="4" y1="9.8" x2="66" y2="9.8" stroke-width="3" class="svg-shadow-route" stroke-linecap="round" opacity="0.35"/>
+    </svg>
+    <span class="legend-label">Greedy route (main)</span>
+  </div>
+
+  <div class="legend-item">
+    <!-- parcel badge -->
+    <svg class="legend-svg badge" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" class="svg-fill-parcel" stroke="white" stroke-width="2"/>
+      <text x="12" y="15" text-anchor="middle" font-size="10" font-weight="700" fill="white">#</text>
+    </svg>
+    <span class="legend-label">Parcel badge (count)</span>
+  </div>
+
+  <div class="legend-note" aria-hidden="true">
+    <small>Colors and shapes are chosen for maximum contrast and quick identification.</small>
+  </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

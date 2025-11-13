@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimal Delivery Route Planner</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-text">
+                        <h1>Optimal Route Planner</h1>
+                        <p>Mathematically Perfect Shortest Path</p>
+                    </div>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalParcels">0</span>
+                        <span class="stat-label">Total Parcels</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalCities">0</span>
+                        <span class="stat-label">Cities</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalDistance">0</span>
+                        <span class="stat-label">Total KM</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="estimatedTime">0</span>
+                        <span class="stat-label">Est. Hours</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main View -->
+        <div class="main-view">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h2>Route Configuration</h2>
+                    <p>Configure deliveries for optimal path</p>
+                </div>
+                
+                <div class="sidebar-content">
+                    <div id="statusContainer"></div>
+
+                    <div class="info-box">
+                        <strong>Optimal Route:</strong> This system finds the mathematically shortest path visiting all cities. Perfect for planning the most efficient delivery route!
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Route Points</div>
+                        <div class="depot-selector">
+                            <div class="depot-row">
+                                <span class="depot-label">Starting City:</span>
+                                <select id="startPoint" class="depot-select">
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Mumbai">Mumbai</option>
+                                    <option value="Bangalore">Bangalore</option>
+                                    <option value="Kolkata">Kolkata</option>
+                                    <option value="Chennai">Chennai</option>
+                                    <option value="Hyderabad">Hyderabad</option>
+                                    <option value="Ahmedabad">Ahmedabad</option>
+                                    <option value="Pune">Pune</option>
+                                    <option value="Jaipur">Jaipur</option>
+                                    <option value="Lucknow">Lucknow</option>
+                                    <option value="Chandigarh">Chandigarh</option>
+                                    <option value="Indore">Indore</option>
+                                </select>
+                            </div>
+                            <div class="depot-row">
+                                <span class="depot-label">Ending City:</span>
+                                <select id="endPoint" class="depot-select">
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Mumbai">Mumbai</option>
+                                    <option value="Bangalore">Bangalore</option>
+                                    <option value="Kolkata">Kolkata</option>
+                                    <option value="Chennai">Chennai</option>
+                                    <option value="Hyderabad">Hyderabad</option>
+                                    <option value="Ahmedabad">Ahmedabad</option>
+                                    <option value="Pune">Pune</option>
+                                    <option value="Jaipur">Jaipur</option>
+                                    <option value="Lucknow">Lucknow</option>
+                                    <option value="Chandigarh">Chandigarh</option>
+                                    <option value="Indore">Indore</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Parcel Configuration</div>
+                        <p style="font-size: 0.85em; color: #666666; margin-bottom: 12px;">
+                            Set number of parcels for each city
+                        </p>
+                        <div class="city-config-list" id="cityConfigList"></div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-title">Actions</div>
+                        <div class="action-section">
+                            <button class="action-btn primary" onclick="calculateOptimalRoute()">
+                                Find Optimal Route
+                            </button>
+                            <button class="action-btn secondary" onclick="clearAllParcels()">
+                                Clear All Parcels
+                            </button>
+                            <button class="action-btn secondary" onclick="resetToDefaults()">
+                                Reset to Defaults
+                            </button>
+                        </div>
+
+                        <div id="routeSummaryContainer"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Area -->
+            <div class="map-container">
+                <canvas id="mapCanvas"></canvas>
+                
+                <!-- Route Details -->
+                <div class="route-info hidden" id="routeInfo">
+                    <h3>Optimal Delivery Sequence</h3>
+                    <div id="routeSteps"></div>
+                </div>
+
+                <!-- Legend -->
+                <div class="legend-panel">
+    <div class="legend-title">Map Legend</div>
+
+    <div class="legend-item">
+        <div class="legend-symbol" style="background: #0D6EFD;"></div>
+        <span>Start City</span>
+    </div>
+
+    <div class="legend-item">
+        <div class="legend-symbol" style="background: #DC3545;"></div>
+        <span>End City</span>
+    </div>
+
+    <div class="legend-item">
+        <div class="legend-symbol" style="background: #198754;"></div>
+        <span>Delivery City (Has Parcels)</span>
+    </div>
+
+    <div class="legend-item">
+        <div class="legend-symbol" style="background: #6C757D;"></div>
+        <span>Normal City</span>
+    </div>
+
+    <div class="legend-item">
+        <div class="legend-symbol" style="background: #CED4DA; border: 2px solid #ADB5BD;"></div>
+        <span>Highway Network</span>
+    </div>
+
+    <div class="legend-item">
+        <div class="legend-symbol" style="background: #212529;"></div>
+        <span>Optimal Route</span>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
