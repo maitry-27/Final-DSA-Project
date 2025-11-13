@@ -7,7 +7,6 @@ This repository contains two independent routing systems:
 - **City Area Delivery Planner (Intra-City)** — Uses the *Greedy Nearest-Neighbour* algorithm  
 - **Optimal Route Planner (Inter-City)** — Uses the *Exact Traveling Salesman Problem (TSP)* algorithm
 
-
 ---
 
 ## Overview
@@ -85,7 +84,7 @@ Guaranteed **100% optimal** for city counts ≤ 10.
 ---
 
 ### Performance
-- **Time Complexity:** O(n!)**  
+- **Time Complexity:** O(n!)  
 - Best suited for logistics and inter-city planning  
 - Extremely accurate but slower due to factorial complexity  
 
@@ -105,23 +104,21 @@ Guarantees shortest possible route using full permutation search.
 
 # Project Structure
 
-
-Final-DSA-Project/
-│
-├── Intra city/
-│ ├── index.html
-│ ├── css/
-│ │ └── styles.css
-│ └── js/
-│ └── main.js
-│
-└── Inter city/
-├── index.html
-├── css/
-│ └── styles.css
-└── js/
-└── main.js
-
+Final-DSA-Project/  
+│  
+├── Intra city/  
+│   ├── index.html  
+│   ├── css/  
+│   │   └── styles.css  
+│   └── js/  
+│       └── main.js  
+│  
+└── Inter city/  
+    ├── index.html  
+    ├── css/  
+    │   └── styles.css  
+    └── js/  
+        └── main.js  
 
 ---
 
