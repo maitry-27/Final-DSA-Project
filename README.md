@@ -9,19 +9,6 @@ This repository contains two independent routing systems:
 
 ---
 
-## Table of Contents
-- [Overview](#overview)
-- [Modules](#modules)
-  - [Intra-City Delivery Planner](#1-intra-city-delivery-planner-greedy)
-  - [Inter-City Optimal Route Planner](#2-inter-city-optimal-route-planner-tsp)
-- [Algorithms Used](#algorithms-used)
-- [Project Structure](#project-structure)
-- [How to Use](#how-to-use)
-- [Feature Comparison](#feature-comparison)
-- [Contributors](#contributors)
-
----
-
 ## Overview
 
 This project includes **two complete delivery-routing systems**:
