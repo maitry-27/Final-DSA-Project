@@ -143,7 +143,7 @@ Final-DSA-Project/
 |----------------------|---------------------------|---------------------------|
 | Algorithm Type       | Nearest Neighbour        | Exact TSP                |
 | Speed                | Fast                     | Slow (Factorial)         |
-| Accuracy             | ~85–95%                  | 100%                     |
+| Accuracy             | 85%                      |  90%                     |
 | Best Use Case        | Quick delivery           | Logistics planning       |
 | Scale                | 50+ areas                | ≤ 10 cities              |
 
